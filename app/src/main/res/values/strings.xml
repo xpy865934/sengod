@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">SENGOD</string>
+    <string name="strat_robot">开启蓝牙\\n连接你的机器人</string>
+    <string name="activity_start_btn_start">开启蓝牙\n连接你的机器人</string>
+    <string name="activity_main_title">主页</string>
+    <string name="activity_main_param_setting">参数\n设置</string>
+    <string name="activity_main_btn_left1">无纠偏\n操作</string>
+    <string name="activity_main_btn_right1">有纠偏\n操作</string>
+    <string name="activity_main_btn_left2">动态\n测试</string>
+    <string name="activity_main_btn_right2">数据\n记录</string>
+    <string name="activity_main_robot_id">机器人ID:</string>
 </resources>
