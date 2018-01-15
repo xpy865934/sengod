@@ -5,7 +5,7 @@ import android.app.Application;
 import com.inuker.bluetooth.library.BluetoothClient;
 
 /**
- * Created by Lenovo on 2018/1/14.
+ * Created by xpy on 2018/1/14.
  */
 
 public class MyApplication extends Application{
