@@ -31,7 +31,9 @@
 
         <activity android:name=".ui.activity.FirstConnectActivity" />
         <activity android:name=".ui.activity.DataRecordActivity" />
-        <activity android:name=".ui.activity.DynamicTestActivity"></activity>
+        <activity android:name=".ui.activity.DynamicTestActivity" />
+        <activity android:name=".ui.activity.ParamSettingActivity" />
+        <activity android:name=".ui.activity.NoRectifyingOperationActivity"></activity>
     </application>
 
 </manifest>
