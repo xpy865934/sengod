@@ -17,6 +17,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".MyApplication"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.activity.StartActivity">
             <intent-filter>
@@ -33,7 +34,8 @@
         <activity android:name=".ui.activity.DataRecordActivity" />
         <activity android:name=".ui.activity.DynamicTestActivity" />
         <activity android:name=".ui.activity.ParamSettingActivity" />
-        <activity android:name=".ui.activity.NoRectifyingOperationActivity"></activity>
+        <activity android:name=".ui.activity.NoRectifyingOperationActivity" />
+        <activity android:name=".ui.activity.ChooseRobotActivity"></activity>
     </application>
 
 </manifest>

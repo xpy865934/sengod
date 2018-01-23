@@ -87,4 +87,8 @@
     <string name="activity_no_rectifying_operation_clockwise">同步顺时90°</string>
     <string name="activity_no_rectifying_operation_up">上\n升</string>
     <string name="activity_no_rectifying_operation_turn_down">下\n降</string>
+    <string name="activity_choose_robot_title">选择机器人</string>
+    <string name="activity_choose_robot_bluetooth">蓝牙</string>
+    <string name="activity_choose_robot_choose_robot">选取机器人...</string>
+    <string name="activity_choose_robot_queding">确定</string>
 </resources>

@@ -5,4 +5,12 @@ package com.sengod.sengod;
  */
 
 public class ConfigApp {
+    //读
+    public static final String READCHARACTERISTICSERVICEUUID="";
+    public static final String READCHARACTERISTICCHARACTERUUID="";
+
+    //写
+    public static final String WRITECHARACTERISTICSERVICEUUID="";
+    public static final String WRITECHARACTERISTICCHARACTERUUID="";
+
 }
