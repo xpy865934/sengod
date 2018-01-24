@@ -29,6 +29,8 @@ public class ChooseRobotActivity extends AppCompatActivity {
     Switch swBluetooth;
     @BindView(R.id.lv_search_result)
     ListView lvSearchResult;
+    @BindView(R.id.lv_connect_history)
+    ListView lvConnectHistory;
 
     private BluetoothClient mClient;
     private ArrayAdapter<Map<String,String>> adapter;
@@ -105,7 +107,8 @@ public class ChooseRobotActivity extends AppCompatActivity {
 
             @Override
             public void onDeviceFounded(SearchResult device) {
-                Map<String,String> map = new HashMap<String, String>();
+                //发现设备即将设备加入到适配器中
+                Map<String,String> map = new HashMap();
                 map.put(device.getAddress(),device.getName());
                 searchResult.add(map);
                 adapter.notifyDataSetChanged();
