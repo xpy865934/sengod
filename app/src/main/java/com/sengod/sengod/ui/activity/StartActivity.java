@@ -25,7 +25,8 @@ public class StartActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_start)
     public void btnStartClick(View view){
-        Intent it = new Intent(StartActivity.this,ChooseRobotActivity.class);
+        Intent it = new Intent(StartActivity.this,FirstConnectActivity.class);
         startActivity(it);
+        this.finish();
     }
 }

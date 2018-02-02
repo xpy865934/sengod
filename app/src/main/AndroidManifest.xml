@@ -26,16 +26,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.MainActivity" />
+        <activity android:name=".ui.activity.MainActivity"/>
 
         <service android:name="com.inuker.bluetooth.library.BluetoothService" />
 
-        <activity android:name=".ui.activity.FirstConnectActivity" />
+        <activity android:name=".ui.activity.FirstConnectActivity"/>
         <activity android:name=".ui.activity.DataRecordActivity" />
         <activity android:name=".ui.activity.DynamicTestActivity" />
         <activity android:name=".ui.activity.ParamSettingActivity" />
-        <activity android:name=".ui.activity.NoRectifyingOperationActivity" />
-        <activity android:name=".ui.activity.ChooseRobotActivity"></activity>
+        <activity android:name=".ui.activity.NoRectifyingOperationActivity"/>
+        <activity android:name=".ui.activity.ChooseRobotActivity"/>
     </application>
 
 </manifest>

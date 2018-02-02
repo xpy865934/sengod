@@ -91,4 +91,5 @@
     <string name="activity_choose_robot_bluetooth">蓝牙</string>
     <string name="activity_choose_robot_choose_robot">选取机器人...</string>
     <string name="activity_choose_robot_queding">确定</string>
+    <string name="exit">再按一次返回键退出！</string>
 </resources>
