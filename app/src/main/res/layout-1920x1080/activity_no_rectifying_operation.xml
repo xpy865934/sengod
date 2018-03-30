@@ -52,7 +52,7 @@
         android:layout_below="@id/rl_no_rectifying_operation_first"
         android:orientation="horizontal">
 
-        <TextView
+        <Button
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginLeft="16dp"
@@ -60,6 +60,7 @@
             android:background="#009688"
             android:gravity="center"
             android:text="@string/activity_no_rectifying_operation_address_qrcode"
+            android:id="@+id/btn_address_qrcode"
             android:textColor="@color/colorWhite"
             android:textSize="26sp" />
 
@@ -203,11 +204,12 @@
         android:layout_below="@id/ll_no_rectifying_operation_second"
         android:orientation="horizontal">
 
-        <TextView
+        <Button
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginLeft="16dp"
             android:background="#009688"
+            android:id="@+id/btn_shelf_qrcode"
             android:gravity="center"
             android:text="@string/activity_no_rectifying_operation_shelves_qrcode"
             android:textColor="@color/colorWhite"
@@ -321,6 +323,7 @@
         android:orientation="horizontal">
         <Button
             android:layout_width="180dp"
+            android:id="@+id/btn_forward"
             android:background="@drawable/btn_forward_shape"
             android:layout_marginLeft="16dp"
             android:textColor="@color/colorWhite"
@@ -329,6 +332,7 @@
             android:layout_height="80dp" />
 
         <Button
+            android:id="@+id/btn_turn_left"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginLeft="10dp"
@@ -344,8 +348,48 @@
             android:textColor="@color/colorWhite"
             android:textSize="22sp"
             android:text="@string/activity_no_rectifying_operation_turn_right"
-            android:layout_height="80dp" />
+            android:layout_height="80dp"
+            android:id="@+id/btn_turn_right" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_no_rectifying_operation_five"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="180dp"
+            android:background="@drawable/btn_back_shape"
+            android:layout_marginLeft="16dp"
+            android:textColor="@color/colorWhite"
+            android:textSize="26sp"
+            android:text="@string/activity_no_rectifying_operation_back"
+            android:layout_height="80dp" />
+
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:id="@+id/btn_up"
+            android:background="@drawable/positive_triangle"
+            android:text="@string/activity_no_rectifying_operation_up"
+            android:textColor="@color/colorWhite"
+            android:textSize="22sp" />
+
+        <Button
+            android:layout_width="80dp"
+            android:background="@drawable/inverted_triangle"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorWhite"
+            android:textSize="22sp"
+            android:gravity="center"
+            android:id="@+id/btn_down"
+            android:text="@string/activity_no_rectifying_operation_turn_down"
+            android:layout_height="100dp" />
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -373,8 +417,10 @@
                     android:text="@string/activity_no_rectifying_distance"
                     />
                 <EditText
+                    android:id="@+id/edi_distance"
                     android:layout_marginLeft="15dp"
                     android:layout_width="60dp"
+                    android:inputType="number"
                     android:layout_marginTop="5dp"
                     android:background="@color/colorWhite"
                     android:lines="1"
@@ -395,13 +441,14 @@
                     android:text="@string/activity_no_rectifying_speed"
                     />
                 <EditText
+                    android:id="@+id/edi_speed"
                     android:layout_marginLeft="15dp"
                     android:layout_width="60dp"
                     android:layout_marginTop="5dp"
                     android:background="@color/colorWhite"
                     android:lines="1"
+                    android:inputType="number"
                     android:gravity="center"
-                    android:hint="0.0"
                     android:layout_height="40dp"
                     />
             </LinearLayout>
@@ -412,6 +459,7 @@
             android:layout_height="80dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
+            android:id="@+id/btn_sync_inverse"
             android:background="@drawable/btn_turn_left_shape"
             android:text="@string/activity_no_rectifying_operation_counter_clockwise"
             android:textColor="@color/colorWhite"
@@ -422,43 +470,10 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/btn_turn_right_shape"
             android:layout_marginLeft="10dp"
+            android:id="@+id/btn_sync_up"
             android:textColor="@color/colorWhite"
             android:textSize="22sp"
             android:text="@string/activity_no_rectifying_operation_clockwise"
             android:layout_height="80dp" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ll_no_rectifying_operation_five"
-        android:orientation="horizontal">
-        <Button
-            android:layout_width="180dp"
-            android:background="@drawable/btn_back_shape"
-            android:layout_marginLeft="16dp"
-            android:textColor="@color/colorWhite"
-            android:textSize="26sp"
-            android:text="@string/activity_no_rectifying_operation_forward"
-            android:layout_height="80dp" />
-
-        <Button
-            android:layout_width="80dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="10dp"
-            android:gravity="center"
-            android:background="@drawable/positive_triangle"
-            android:text="@string/activity_no_rectifying_operation_up"
-            android:textColor="@color/colorWhite"
-            android:textSize="22sp" />
-
-        <Button
-            android:layout_width="80dp"
-            android:background="@drawable/inverted_triangle"
-            android:layout_marginLeft="10dp"
-            android:textColor="@color/colorWhite"
-            android:textSize="22sp"
-            android:gravity="center"
-            android:text="@string/activity_no_rectifying_operation_turn_down"
-            android:layout_height="100dp" />
     </LinearLayout>
 </RelativeLayout>

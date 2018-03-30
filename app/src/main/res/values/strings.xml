@@ -79,10 +79,11 @@
     <string name="activity_no_rectifying_coordinate_unit2">°</string>
     <string name="activity_no_rectifying_operation_shelves_qrcode">货架\n二维码</string>
     <string name="activity_no_rectifying_operation_forward">前进</string>
+    <string name="activity_no_rectifying_operation_back">后退</string>
     <string name="activity_no_rectifying_operation_turn_left">左转90°</string>
     <string name="activity_no_rectifying_operation_turn_right">右转90°</string>
-    <string name="activity_no_rectifying_distance">距离\n(m)</string>
-    <string name="activity_no_rectifying_speed">速度\n(m/s)</string>
+    <string name="activity_no_rectifying_distance">距离\n(mm)</string>
+    <string name="activity_no_rectifying_speed">速度\n(mm/s)</string>
     <string name="activity_no_rectifying_operation_counter_clockwise">同步逆时90°</string>
     <string name="activity_no_rectifying_operation_clockwise">同步顺时90°</string>
     <string name="activity_no_rectifying_operation_up">上\n升</string>
@@ -92,4 +93,10 @@
     <string name="activity_choose_robot_choose_robot">选取机器人...</string>
     <string name="activity_choose_robot_queding">确定</string>
     <string name="exit">再按一次返回键退出！</string>
+    <string name="activity_rectifying_operation_title">有纠偏操作</string>
+    <string name="activity_rectifying_operation_left">左进\r\n定位</string>
+    <string name="activity_rectifying_operation_right">右进\r\n定位</string>
+    <string name="activity_rectifying_operation_top">前进\r\n定位</string>
+    <string name="activity_rectifying_operation_bottom">后退\r\n定位</string>
+    <string name="activity_rectifying_operation_center">旋转\r\n定位</string>
 </resources>

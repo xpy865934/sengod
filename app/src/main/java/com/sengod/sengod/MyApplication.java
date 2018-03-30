@@ -14,7 +14,14 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        if (mBluetoothClient == null)
+
+        //初始化BluetoothClient,全局单例使用
+        if(mBluetoothClient == null){
             mBluetoothClient = new BluetoothClient(this);
+        }
+    }
+
+    public static BluetoothClient getBluetoothClient(){
+        return mBluetoothClient;
     }
 }

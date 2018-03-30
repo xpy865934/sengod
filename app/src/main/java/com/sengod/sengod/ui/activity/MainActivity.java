@@ -1,22 +1,21 @@
 package com.sengod.sengod.ui.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sengod.sengod.ConfigApp;
 import com.sengod.sengod.R;
+import com.sengod.sengod.utils.AtyContainer;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @BindView(R.id.btn_no_rectify)
     Button btnNoRectify;
@@ -32,12 +31,14 @@ public class MainActivity extends AppCompatActivity {
     private long clickTime = 0;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void initView() {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
     }
 
+
+
+    //时间监听
     @OnClick(R.id.btn_no_rectify)
     public void btnNoRectifyClick(View view){
         Intent it = new Intent(MainActivity.this,NoRectifyingOperationActivity.class);
@@ -46,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_rectify)
     public void btnRectifyClick(View view){
-        Toast.makeText(MainActivity.this,"功能正在完善！",Toast.LENGTH_SHORT).show();
+//        Intent it = new Intent(MainActivity.this,RectifyingOperationAction.class);
+//        startActivity(it);
+        Toast.makeText(MainActivity.this,"正在完善中，请耐心等待!",Toast.LENGTH_SHORT).show();
     }
 
     @OnClick(R.id.btn_dynamic_test)
@@ -73,14 +76,14 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, R.string.exit, Toast.LENGTH_SHORT).show();
             clickTime = System.currentTimeMillis();
         } else {
-            this.finish();
+//            this.finish();
+            AtyContainer.getInstance().finishAllActivity();
         }
     }
 
     // 返回键、音量键可以监测到
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        Log.i("TAG", keyCode + "按键code");
         switch (keyCode) {
             // 返回键
             case KeyEvent.KEYCODE_BACK:
@@ -88,5 +91,11 @@ public class MainActivity extends AppCompatActivity {
                 return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mClient.disconnect(ConfigApp.current_connected_mac);
     }
 }
