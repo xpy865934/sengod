@@ -47,6 +47,18 @@ public class ConfigApp {
             put("upOrDown","0C");
             put("readAddressQrCode","06");
             put("readShelfQrCode","07");
+            put("readData","01");
+            put("writeData","02");
+            put("readParam","03");
+            put("writeParam","04");
+            put("readDynamicData","05");
+            put("absoluteRotate","0D");
+            put("absoluteRotateExcursion","0E");
+            put("rectifyMoveForward","0F");
+            put("rectifyMoveBack","10");
+            put("relativeShelfRotate","11");
+            put("absoluteShelfRotate","12");
+            put("queryState","13");
         }
     };
 }

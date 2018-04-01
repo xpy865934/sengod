@@ -115,6 +115,4 @@ public class CommonUtil {
     }
     ///蓝牙转换字符相关 end
 
-
-
 }

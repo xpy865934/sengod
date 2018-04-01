@@ -2,6 +2,7 @@ package com.sengod.sengod.ui.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.TypedValue;
 
 import com.inuker.bluetooth.library.BluetoothClient;
 import com.inuker.bluetooth.library.connect.response.BleNotifyResponse;
@@ -10,6 +11,7 @@ import com.inuker.bluetooth.library.connect.response.BleUnnotifyResponse;
 import com.inuker.bluetooth.library.connect.response.BleWriteResponse;
 import com.sengod.sengod.ConfigApp;
 import com.sengod.sengod.MyApplication;
+import com.sengod.sengod.db.DbManager;
 import com.sengod.sengod.utils.AtyContainer;
 import com.sengod.sengod.utils.CRC16Util;
 import com.sengod.sengod.utils.CommonUtil;
@@ -23,6 +25,7 @@ import java.util.UUID;
 
 public abstract class BaseActivity extends Activity{
     public BluetoothClient mClient;
+    public DbManager dbManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,7 @@ public abstract class BaseActivity extends Activity{
         AtyContainer.getInstance().addActivity(this);
 
         mClient = MyApplication.getBluetoothClient();
+        dbManager = DbManager.getInstance(getApplicationContext());
 
         initView();
 
@@ -199,5 +203,19 @@ public abstract class BaseActivity extends Activity{
         send +=crc;
         LogUtils.i("TAG","send :"+send);
         return send;
+    }
+
+    // 将dp转换为px
+    public int dp2px(int value) {
+        // 第一个参数为我们待转的数据的单位，此处为 dp（dip）
+        // 第二个参数为我们待转的数据的值的大小
+        // 第三个参数为此次转换使用的显示量度（Metrics），它提供屏幕显示密度（density）和缩放信息
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value,
+                getResources().getDisplayMetrics());
+    }
+    //另一种将dp转换为px的方法
+    public int dp2px(float value){
+        final float scale = getResources().getDisplayMetrics().density;
+        return (int)(value*scale + 0.5f);
     }
 }

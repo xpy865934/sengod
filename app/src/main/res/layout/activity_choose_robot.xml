@@ -80,12 +80,17 @@
         <com.baoyz.swipemenulistview.SwipeMenuListView
             android:id="@+id/lv_connect_history"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:visibility="gone"
-            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
             android:layout_marginRight="10dp">
 
         </com.baoyz.swipemenulistview.SwipeMenuListView>
+
+        <view
+            class="android.view.View"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CCCCCC" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -95,18 +100,33 @@
             android:text="@string/activity_choose_robot_choose_robot"
             android:textColor="#717171" />
 
+        <view
+            class="android.view.View"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@drawable/activity_main_title_shadow" />
+
+
         <ListView
             android:id="@+id/lv_search_result"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="60dp">
 
         </ListView>
+
+        <view
+            class="android.view.View"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@drawable/activity_main_title_shadow" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_marginTop="15dp"
             android:gravity="center">
 

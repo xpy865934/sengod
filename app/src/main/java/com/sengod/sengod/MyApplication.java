@@ -3,13 +3,15 @@ package com.sengod.sengod;
 import android.app.Application;
 
 import com.inuker.bluetooth.library.BluetoothClient;
+import com.sengod.sengod.db.DbManager;
 
 /**
  * Created by xpy on 2018/1/14.
  */
 
 public class MyApplication extends Application {
-    public static BluetoothClient mBluetoothClient = null;
+    private static BluetoothClient mBluetoothClient = null;
+    private static DbManager dbManager=null;
 
     @Override
     public void onCreate() {

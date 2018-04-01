@@ -13,7 +13,7 @@ import org.greenrobot.greendao.query.QueryBuilder;
 import java.util.List;
 
 /**
- * Created by Lenovo on 2018/1/24.
+ * Created by xpy on 2018/1/24.
  */
 
 public class DbManager {
@@ -32,7 +32,7 @@ public class DbManager {
      * @param context
      * @return
      */
-    public static  DbManager getInstance(Context context){
+    public static DbManager getInstance(Context context){
         if(mdbManager==null){
             synchronized (DbManager.class){
                 if(mdbManager==null){
@@ -104,4 +104,44 @@ public class DbManager {
         List<BluetoothDevice> list = qb.list();
         return list;
     }
+
+    /**
+     * 判断蓝牙是否已经存在于数据库中
+     * @param mac
+     * @return
+     */
+    public boolean isExist(String mac){
+        DaoMaster daoMaster = new DaoMaster(getReadableDatabase());
+        DaoSession daoSession = daoMaster.newSession();
+        BluetoothDeviceDao bluetoothDeviceDao = daoSession.getBluetoothDeviceDao();
+        QueryBuilder<BluetoothDevice> qb = bluetoothDeviceDao.queryBuilder();
+        long count = qb.where(BluetoothDeviceDao.Properties.Mac.eq(mac)).count();
+        if(count==0){
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 查询数据库表中的总记录数
+     * @return
+     */
+    public long queryCount(){
+        DaoMaster daoMaster = new DaoMaster(getReadableDatabase());
+        DaoSession daoSession = daoMaster.newSession();
+        BluetoothDeviceDao bluetoothDeviceDao = daoSession.getBluetoothDeviceDao();
+        return bluetoothDeviceDao.count();
+    }
+
+    /**
+     * 删除数据库表中的最后一条记录
+     */
+    public void deleteLastIndex(){
+        DaoMaster daoMaster = new DaoMaster(getReadableDatabase());
+        DaoSession daoSession = daoMaster.newSession();
+        BluetoothDeviceDao bluetoothDeviceDao = daoSession.getBluetoothDeviceDao();
+        daoSession.getDatabase().execSQL("delete from "+bluetoothDeviceDao.getTablename()+" where Id like (select top 1 Id from "+bluetoothDeviceDao.getTablename()+" order by Id desc)");
+    }
+
+
 }
