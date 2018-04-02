@@ -52,7 +52,7 @@ public class NoRectifyingOperationActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        setContentView(R.layout.activity_no_rectifying_operation);
+        setContentView(R.layout.activity_no_rectifying_operation1);
         ButterKnife.bind(this);
 
         notify(new BleNotifyResponse() {

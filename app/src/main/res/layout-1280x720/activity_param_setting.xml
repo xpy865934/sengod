@@ -65,10 +65,10 @@
                         android:layout_marginLeft="25dp"
                         android:text="@string/activity_param_setting_speed_up"
                         android:textColor="@color/colorBlack"
-                        android:textSize="25sp" />
+                        android:textSize="20sp" />
 
                     <EditText
-                        android:layout_width="60dp"
+                        android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:ems="4"
                         android:gravity="center"
@@ -78,13 +78,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="45dp"
+                        android:layout_marginLeft="35dp"
                         android:text="@string/activity_param_setting_speed_down"
                         android:textColor="@color/colorBlack"
-                        android:textSize="25sp" />
+                        android:textSize="20sp" />
 
                     <EditText
-                        android:layout_width="60dp"
+                        android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:ems="4"
                         android:gravity="center"
@@ -126,10 +126,10 @@
                         android:layout_marginLeft="25dp"
                         android:text="@string/activity_param_setting_speed_up"
                         android:textColor="@color/colorBlack"
-                        android:textSize="25sp" />
+                        android:textSize="20sp" />
 
                     <EditText
-                        android:layout_width="60dp"
+                        android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:ems="4"
                         android:gravity="center"
@@ -139,13 +139,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="45dp"
+                        android:layout_marginLeft="35dp"
                         android:text="@string/activity_param_setting_speed_down"
                         android:textColor="@color/colorBlack"
-                        android:textSize="25sp" />
+                        android:textSize="20sp" />
 
                     <EditText
-                        android:layout_width="60dp"
+                        android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:ems="4"
                         android:gravity="center"
@@ -187,10 +187,10 @@
                         android:layout_marginLeft="25dp"
                         android:text="@string/activity_param_setting_height"
                         android:textColor="@color/colorBlack"
-                        android:textSize="25sp" />
+                        android:textSize="20sp" />
 
                     <EditText
-                        android:layout_width="60dp"
+                        android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:ems="4"
                         android:gravity="center"
@@ -202,7 +202,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/activity_param_setting_height_unit"
                         android:textColor="@color/colorBlack"
-                        android:textSize="25sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -210,10 +210,10 @@
                         android:layout_marginLeft="5dp"
                         android:text="@string/activity_param_setting_speed"
                         android:textColor="@color/colorBlack"
-                        android:textSize="25sp" />
+                        android:textSize="20sp" />
 
                     <EditText
-                        android:layout_width="60dp"
+                        android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:ems="4"
                         android:gravity="center"
@@ -225,7 +225,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/activity_param_setting_speed_unit"
                         android:textColor="@color/colorBlack"
-                        android:textSize="25sp" />
+                        android:textSize="20sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -262,10 +262,10 @@
                         android:layout_marginLeft="25dp"
                         android:text="@string/activity_param_setting_speed_down_distance"
                         android:textColor="@color/colorBlack"
-                        android:textSize="25sp" />
+                        android:textSize="20sp" />
 
                     <EditText
-                        android:layout_width="60dp"
+                        android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="110dp"
                         android:ems="4"
@@ -278,7 +278,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/activity_param_setting_height_unit"
                         android:textColor="@color/colorBlack"
-                        android:textSize="25sp" />
+                        android:textSize="20sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -292,10 +292,10 @@
                         android:layout_marginLeft="25dp"
                         android:text="@string/activity_param_setting_brake"
                         android:textColor="@color/colorBlack"
-                        android:textSize="25sp" />
+                        android:textSize="20sp" />
 
                     <EditText
-                        android:layout_width="60dp"
+                        android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="110dp"
                         android:ems="4"
@@ -370,10 +370,10 @@
                         android:layout_marginLeft="25dp"
                         android:text="@string/activity_param_setting_wheel_left"
                         android:textColor="@color/colorBlack"
-                        android:textSize="25sp" />
+                        android:textSize="20sp" />
 
                     <EditText
-                        android:layout_width="60dp"
+                        android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:ems="4"
                         android:gravity="center"
@@ -386,10 +386,10 @@
                         android:layout_marginLeft="45dp"
                         android:text="@string/activity_param_setting_wheel_right"
                         android:textColor="@color/colorBlack"
-                        android:textSize="25sp" />
+                        android:textSize="20sp" />
 
                     <EditText
-                        android:layout_width="60dp"
+                        android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:ems="4"
                         android:gravity="center"

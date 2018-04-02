@@ -73,6 +73,7 @@
     <string name="activity_no_rectifying_operation_title">无纠偏操作</string>
     <string name="activity_no_rectifying_operation_address_qrcode">地址\n二维码</string>
     <string name="activity_no_rectifying_operation_address">地址</string>
+    <string name="activity_no_rectifying_operation_address_math">(x,y)</string>
     <string name="activity_no_rectifying_operation_coordinate">坐标</string>
     <string name="activity_no_rectifying_operation_coordinate_math">(△x,△y,θ)</string>
     <string name="activity_no_rectifying_coordinate_unit1">mm</string>
