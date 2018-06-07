@@ -1,5 +1,6 @@
 package com.sengod.sengod.ui.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -29,6 +30,7 @@ import com.sengod.sengod.ConfigApp;
 import com.sengod.sengod.MyApplication;
 import com.sengod.sengod.R;
 import com.sengod.sengod.bean.BluetoothDevice;
+import com.sengod.sengod.ui.dialog.LoadingDialog;
 import com.sengod.sengod.utils.LogUtils;
 
 import java.util.ArrayList;
@@ -58,6 +60,7 @@ public class ChooseRobotActivity extends BaseActivity {
     private SimpleAdapter hisAdapter;
     private List<Map<String,String>> searchResult = new ArrayList<>();
     private List<Map<String,String>> hisResult = new ArrayList<>();
+    private Dialog loadingDialog;
 
     /**
      * 蓝牙开启状态监听器
@@ -74,6 +77,7 @@ public class ChooseRobotActivity extends BaseActivity {
         setContentView(R.layout.activity_choose_robot);
         ButterKnife.bind(this);//注解
 
+        loadingDialog = LoadingDialog.getDialog(ChooseRobotActivity.this,getString(R.string.first_connect));
         adapter = new SimpleAdapter(this,searchResult,R.layout.adapter__list,new String[]{"device_name","device_mac"},new int[]{R.id.tv_device_name,R.id.tv_device_mac} );
         lvSearchResult.setAdapter(adapter);//适配器
 
@@ -152,6 +156,7 @@ public class ChooseRobotActivity extends BaseActivity {
         lvSearchResult.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                mClient.stopSearch();
                 String device_name = searchResult.get(i).get("device_name");
                 String device_mac = searchResult.get(i).get("device_mac");
                 connectDevice(device_name,device_mac);
@@ -173,9 +178,11 @@ public class ChooseRobotActivity extends BaseActivity {
                 .setServiceDiscoverTimeout(20000)  // 发现服务超时20s
                 .build();
 
+        loadingDialog.show();
         mClient.connect(deviceMac, options,new BleConnectResponse() {
             @Override
             public void onResponse(int code, BleGattProfile data) {
+                loadingDialog.dismiss();
                 if(code == Constants.REQUEST_SUCCESS){
                     ConfigApp.current_connected_mac = deviceMac;
                     ConfigApp.current_connected_name = deviceName;

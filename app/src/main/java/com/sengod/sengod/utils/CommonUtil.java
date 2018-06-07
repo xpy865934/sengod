@@ -1,5 +1,9 @@
 package com.sengod.sengod.utils;
 
+import android.content.Context;
+import android.util.DisplayMetrics;
+import android.view.WindowManager;
+
 import java.util.List;
 import java.util.Map;
 
@@ -114,5 +118,68 @@ public class CommonUtil {
         return temp;
     }
     ///蓝牙转换字符相关 end
+
+    /**
+     * 获取屏幕dpi
+     * @param context
+     * @return
+     */
+    public static float getDensity(Context context) {
+        WindowManager wm =(WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics dm = new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(dm);
+        return dm.density;
+    }
+    /**
+     * 16进制转换成为string类型字符串
+     * @param s
+     * @return
+     */
+    public static String hexStringToString(String s) {
+        if (s == null || s.equals("")) {
+            return null;
+        }
+        s = s.replace(" ", "");
+        byte[] baKeyword = new byte[s.length() / 2];
+        for (int i = 0; i < baKeyword.length; i++) {
+            try {
+                baKeyword[i] = (byte) (0xff & Integer.parseInt(s.substring(i * 2, i * 2 + 2), 16));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            s = new String(baKeyword, "UTF-8");
+            new String();
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+        return s;
+    }
+
+    public static double hexStr2Double(String pStr) {
+        int i = Integer.parseInt(pStr, 16);
+        double d;
+        if (pStr.startsWith("F")) {
+            d = (double) (i - 65536) / 100;
+        } else {
+            d = (double) i / 100;
+        }
+        d = ((double) Math.round(d * 10)) / 10;
+        return d;
+    }
+
+    public static float hexStr2Float(String pStr) {
+        return (float) (hexStr2Double(pStr));
+    }
+
+    public static int hexStr2Int(String pStr) {
+        return Integer.parseInt(pStr, 16);
+    }
+
+    // 测试
+    public static void main(String[] args) {
+        System.out.print(hexStringToString("383736353433323100"));
+    }
 
 }

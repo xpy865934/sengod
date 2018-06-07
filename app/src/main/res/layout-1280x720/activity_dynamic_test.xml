@@ -62,6 +62,7 @@
                     android:textSize="20sp" />
 
                 <ImageView
+                    android:id="@+id/img_pressure_switch1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -76,6 +77,7 @@
                     android:textSize="20sp" />
 
                 <ImageView
+                    android:id="@+id/img_pressure_switch2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -107,6 +109,7 @@
                     android:textSize="20sp" />
 
                 <ImageView
+                    android:id="@+id/img_scram1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -121,6 +124,7 @@
                     android:textSize="20sp" />
 
                 <ImageView
+                    android:id="@+id/img_scram2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -152,6 +156,7 @@
                     android:textSize="20sp" />
 
                 <ImageView
+                    android:id="@+id/img_power_socket1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -166,6 +171,7 @@
                     android:textSize="20sp" />
 
                 <ImageView
+                    android:id="@+id/img_power_socket2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -188,6 +194,7 @@
                     android:textSize="20sp" />
 
                 <ImageView
+                    android:id="@+id/img_power_socket3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -218,6 +225,7 @@
                     android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/tv_battery_voltage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
@@ -243,6 +251,7 @@
                     android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/tv_battery_temperature"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
@@ -277,6 +286,7 @@
                     android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/tv_barrier_distance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
@@ -318,6 +328,7 @@
                     android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/tv_walking_servo1_state"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
@@ -342,6 +353,7 @@
                     android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/tv_walking_current1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
@@ -383,14 +395,16 @@
                     android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/tv_walking_servo2_state"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
                     android:gravity="right"
                     android:text="@string/activity_dynamic_test_walking_servo_state_data"
                     android:textColor="#D1071F"
-                    android:textSize="20sp" />
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:textSize="20sp"
+                    android:layout_alignParentTop="true" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -407,6 +421,7 @@
                     android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/tv_walking_current2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
@@ -435,11 +450,79 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
+                    android:text="@string/activity_dynamic_test_jacking_servo"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/activity_dynamic_test_jacking_servo_state"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tv_jacking_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:gravity="right"
+                    android:text="@string/activity_dynamic_test_jacking_servo_state_data"
+                    android:textColor="#D1071F"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/activity_dynamic_test_jacking_current"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tv_jacking_current"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:gravity="right"
+                    android:text="@string/activity_dynamic_test_jacking_current_data"
+                    android:textColor="#D1071F"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+
+            <view
+                class="android.view.View"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:background="#979797" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
                     android:text="@string/activity_dynamic_test_rotate_servo"
                     android:textColor="@color/colorBlack"
                     android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/tv_rotate_state"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -448,6 +531,7 @@
                     android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/tv_rotate_state"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
@@ -472,6 +556,7 @@
                     android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/tv_rotate_current"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"

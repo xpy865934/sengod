@@ -34,6 +34,9 @@ public class MainActivity extends BaseActivity {
     public void initView() {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        //注册监听蓝牙连接状态
+        registerConnectStatusListener(MainActivity.this);
     }
 
 
@@ -47,9 +50,9 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.btn_rectify)
     public void btnRectifyClick(View view){
-//        Intent it = new Intent(MainActivity.this,RectifyingOperationAction.class);
-//        startActivity(it);
-        Toast.makeText(MainActivity.this,"正在完善中，请耐心等待!",Toast.LENGTH_SHORT).show();
+        Intent it = new Intent(MainActivity.this,RectifyingOperationAction.class);
+        startActivity(it);
+//        Toast.makeText(MainActivity.this,"正在完善中，请耐心等待!",Toast.LENGTH_SHORT).show();
     }
 
     @OnClick(R.id.btn_dynamic_test)
@@ -96,6 +99,8 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        //关闭监听
+        unRegisterConnectStatusListener();
         mClient.disconnect(ConfigApp.current_connected_mac);
     }
 }

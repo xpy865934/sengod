@@ -88,7 +88,7 @@
             android:id="@+id/btn_no_rectify"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:background="@drawable/btn_main_shape_left1"
+            android:background="@drawable/btn_main_shape_left1_selector"
             android:text="@string/activity_main_btn_left1"
             android:textColor="#FFFFFF"
             android:textSize="24sp" />
@@ -98,7 +98,7 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_marginLeft="8dp"
-            android:background="@drawable/btn_main_shape_right1"
+            android:background="@drawable/btn_main_shape_right1_selector"
             android:text="@string/activity_main_btn_right1"
             android:textColor="#FFFFFF"
             android:textSize="24sp" />
@@ -116,7 +116,7 @@
             android:id="@+id/btn_dynamic_test"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:background="@drawable/btn_main_shape_left2"
+            android:background="@drawable/btn_main_shape_left2_selector"
             android:text="@string/activity_main_btn_left2"
             android:textColor="#FFFFFF"
             android:textSize="24sp" />
@@ -126,7 +126,7 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_marginLeft="8dp"
-            android:background="@drawable/btn_main_shape_right2"
+            android:background="@drawable/btn_main_shape_right2_selector"
             android:text="@string/activity_main_btn_right2"
             android:textColor="#FFFFFF"
             android:textSize="24sp" />

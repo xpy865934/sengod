@@ -80,7 +80,7 @@
             android:id="@+id/btn_first_connect_next"
             android:layout_width="290dp"
             android:layout_height="50dp"
-            android:background="@drawable/btn_start_shape"
+            android:background="@drawable/btn_activitystart_selector"
             android:text="@string/activity_first_connect_next"
             android:textColor="@color/colorWhite"
             android:textSize="30sp" />

@@ -102,7 +102,7 @@ public class CircleController extends View {
         mPaint.setColor(Color.parseColor("#009688"));
 
         mClickPaint = new Paint(mPaint);
-        mClickPaint.setColor(Color.parseColor("#009688"));
+        mClickPaint.setColor(Color.parseColor("#097c72"));
 
         mPathLeft = new Path();
         mPathTop = new Path();
@@ -183,7 +183,15 @@ public class CircleController extends View {
 
         TextPaint textPaint = new TextPaint();
         textPaint.setColor(Color.WHITE);
-        textPaint.setTextSize(30);
+        //dpi   /160
+        //LogUtils.i("TAG","dpi:" + CommonUtil.getDensity(mContext));
+//        float dpi = CommonUtil.getDensity(mContext);
+//        if(dpi<3.0){
+//            textPaint.setTextSize(mWidth/150*10);
+//        }else {
+//            textPaint.setTextSize(mWidth / 150 * 20);
+//        }
+        textPaint.setTextSize(mWidth / 150 * 20);
         textPaint.setStrokeWidth(2.0f);
         textPaint.setTypeface(Typeface.create(Typeface.SANS_SERIF,Typeface.BOLD));
 
@@ -193,14 +201,15 @@ public class CircleController extends View {
         // 这里的参数300，表示字符串的长度，当满300时，就会换行，也可以使用“\r\n”来实现换行
         canvas.save();
 //        canvas.translate(mWidth / 4.5f,-mWidth/6);//从mWidth / 5,-mWidth/6开始画
-        canvas.translate(mWidth/4*3,mWidth/2-mRadius);//从mWidth / 5,-mWidth/6开始画
+
+        canvas.translate(mWidth*0.72f,mWidth*0.38f);//从mWidth*0.72f,mWidth*0.57f开始画
         layout.draw(canvas);
         canvas.restore();
         //top
         layout = new StaticLayout(mContext.getString(R.string.activity_rectifying_operation_top), textPaint, 300, Layout.Alignment.ALIGN_NORMAL, 1.0F, 0.0F, true);
         // 这里的参数300，表示字符串的长度，当满300时，就会换行，也可以使用“\r\n”来实现换行
         canvas.save();
-        canvas.translate(mWidth/2f-(1/2f*mRadius),0);//从mRadius，0开始画
+        canvas.translate(mWidth*0.40f,mWidth*0.05f);
         layout.draw(canvas);
         canvas.restore();
 
@@ -208,7 +217,23 @@ public class CircleController extends View {
         layout = new StaticLayout(mContext.getString(R.string.activity_rectifying_operation_left), textPaint, 300, Layout.Alignment.ALIGN_NORMAL, 1.0F, 0.0F, true);
         // 这里的参数300，表示字符串的长度，当满300时，就会换行，也可以使用“\r\n”来实现换行
         canvas.save();
-        canvas.translate(1/10f*mWidth,mWidth/2f-mRadius);//从mRadius，0开始画
+        canvas.translate(mWidth*0.07f,mWidth*0.38f);
+        layout.draw(canvas);
+        canvas.restore();
+
+        //bottom
+        layout = new StaticLayout(mContext.getString(R.string.activity_rectifying_operation_bottom), textPaint, 300, Layout.Alignment.ALIGN_NORMAL, 1.0F, 0.0F, true);
+        // 这里的参数300，表示字符串的长度，当满300时，就会换行，也可以使用“\r\n”来实现换行
+        canvas.save();
+        canvas.translate(mWidth*0.40f,mWidth*0.72f);
+        layout.draw(canvas);
+        canvas.restore();
+
+        //center
+        layout = new StaticLayout(mContext.getString(R.string.activity_rectifying_operation_center), textPaint, 300, Layout.Alignment.ALIGN_NORMAL, 1.0F, 0.0F, true);
+        // 这里的参数300，表示字符串的长度，当满300时，就会换行，也可以使用“\r\n”来实现换行
+        canvas.save();
+        canvas.translate(mWidth*0.40f,mWidth*0.38f);
         layout.draw(canvas);
         canvas.restore();
 

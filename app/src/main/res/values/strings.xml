@@ -16,7 +16,7 @@
     <string name="activity_data_record_factory_time">出厂时间</string>
     <string name="activity_data_record_factory_time_data">%1$s年/%2$s月/%3$s日</string>
     <string name="activity_data_record_version">软件版本号</string>
-    <string name="activity_data_record_factory_version_data">0.0</string>
+    <string name="activity_data_record_factory_version_data">%1$s.%2$s</string>
     <string name="activity_data_record_total_charging_times">充电总次数</string>
     <string name="activity_data_record_total_charging_times_data">%1$d次</string>
     <string name="activity_data_record_use_time">小车实际使用时间累积（含充电时间）</string>
@@ -65,7 +65,7 @@
     <string name="activity_param_setting_speed_unit">mm/s</string>
     <string name="activity_param_setting_obstacle_detection">障碍物检测控制参数</string>
     <string name="activity_param_setting_speed_down_distance">减速距离</string>
-    <string name="activity_param_setting_brake">刹车参数</string>
+    <string name="activity_param_setting_speed_down_acc">减速加速度</string>
     <string name="activity_param_setting_rotation_speed">旋转速度(m/s)</string>
     <string name="activity_param_setting_wheel_diameter">车轮直径</string>
     <string name="activity_param_setting_wheel_left">左轮</string>
@@ -79,6 +79,7 @@
     <string name="activity_no_rectifying_coordinate_unit1">mm</string>
     <string name="activity_no_rectifying_coordinate_unit2">°</string>
     <string name="activity_no_rectifying_operation_shelves_qrcode">货架\n二维码</string>
+    <string name="activity_no_rectifying_operation_shelves_id">货架ID</string>
     <string name="activity_no_rectifying_operation_forward">前进</string>
     <string name="activity_no_rectifying_operation_back">后退</string>
     <string name="activity_no_rectifying_operation_turn_left">左转90°</string>
@@ -95,9 +96,43 @@
     <string name="activity_choose_robot_queding">确定</string>
     <string name="exit">再按一次返回键退出！</string>
     <string name="activity_rectifying_operation_title">有纠偏操作</string>
-    <string name="activity_rectifying_operation_left">左进\r\n定位</string>
-    <string name="activity_rectifying_operation_right">右进\r\n定位</string>
-    <string name="activity_rectifying_operation_top">前进\r\n定位</string>
-    <string name="activity_rectifying_operation_bottom">后退\r\n定位</string>
-    <string name="activity_rectifying_operation_center">旋转\r\n定位</string>
+    <string name="activity_rectifying_operation_left">左进\n定位</string>
+    <string name="activity_rectifying_operation_right">右进\n定位</string>
+    <string name="activity_rectifying_operation_top">前进\n定位</string>
+    <string name="activity_rectifying_operation_bottom">后退\n定位</string>
+    <string name="activity_rectifying_operation_center">旋转\n定位</string>
+    <string name="activity_dynamic_test_jacking_servo">顶升伺服</string>
+    <string name="activity_dynamic_test_jacking_servo_state">状态</string>
+    <string name="activity_dynamic_test_jacking_servo_state_data">故障</string>
+    <string name="activity_dynamic_test_jacking_current">工作电流</string>
+    <string name="activity_dynamic_test_jacking_current_data">%1$sA</string>
+    
+    <string name="activity_common_init">初始化</string>
+    <string name="activity_common_disconnect">连接断开</string>
+    <string name="activity_common_connecting">正在连接</string>
+    <string name="activity_common_stop">停止</string>
+    <string name="activity_common_run">运行</string>
+    <string name="activity_common_prerun">预运行</string>
+    <string name="activity_common_unknown">未知</string>
+    <string name="activity_param_setting_confirm">确定</string>
+    <string name="activity_rectifying_operation_devi_correction_P">纠偏修正\nP参数</string>
+    <string name="activity_rectifying_operation_devi_correction_L">纠偏修正\nL参数</string>
+
+    <string name="errorMsg">CRC校验出错！</string>
+    <string name="errorMsg1">功能码错误！</string>
+    <string name="errorMsg2">长度错误！</string>
+    <string name="errorMsg3">内部错误！</string>
+    <string name="errorMsg4">应答！</string>
+    <string name="errorMsg5">从站忙！</string>
+    <string name="errorMsg6">CRC校验错误！</string>
+    <string name="errorMsg7">数据范围错误！</string>
+    <string name="errorMsg8">协议ID错误！</string>
+    <string name="errorMsg9">数据长度错误！</string>
+    <string name="errorMsg10">命令执行失败！</string>
+    <string name="errorMsg11">数据解析出错！</string>
+    <string name="disconnected">蓝牙已断开\n请重新连接</string>
+    <string name="disconnected_ok">重新连接</string>
+    <string name="disconnected_exit">退出程序</string>
+    <string name="bluetooth_reconnected">重新连接...</string>
+    <string name="first_connect">正在连接...</string>
 </resources>

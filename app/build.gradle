@@ -40,4 +40,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'com.orhanobut:logger:1.15'
+    compile 'com.github.f0ris.sweetalert:library:1.5.1'
 }

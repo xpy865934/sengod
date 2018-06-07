@@ -1,22 +1,35 @@
 package com.sengod.sengod.ui.activity;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.TypedValue;
 
 import com.inuker.bluetooth.library.BluetoothClient;
+import com.inuker.bluetooth.library.Constants;
+import com.inuker.bluetooth.library.connect.listener.BleConnectStatusListener;
+import com.inuker.bluetooth.library.connect.response.BleConnectResponse;
 import com.inuker.bluetooth.library.connect.response.BleNotifyResponse;
 import com.inuker.bluetooth.library.connect.response.BleReadResponse;
 import com.inuker.bluetooth.library.connect.response.BleUnnotifyResponse;
 import com.inuker.bluetooth.library.connect.response.BleWriteResponse;
+import com.inuker.bluetooth.library.model.BleGattProfile;
 import com.sengod.sengod.ConfigApp;
 import com.sengod.sengod.MyApplication;
+import com.sengod.sengod.R;
 import com.sengod.sengod.db.DbManager;
+import com.sengod.sengod.ui.customerview.CustomerDialog;
+import com.sengod.sengod.ui.dialog.LoadingDialog;
+import com.sengod.sengod.ui.dialog.MyDialog;
 import com.sengod.sengod.utils.AtyContainer;
 import com.sengod.sengod.utils.CRC16Util;
 import com.sengod.sengod.utils.CommonUtil;
 import com.sengod.sengod.utils.LogUtils;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -26,6 +39,65 @@ import java.util.UUID;
 public abstract class BaseActivity extends Activity{
     public BluetoothClient mClient;
     public DbManager dbManager;
+    private int msgLen=0;
+    private int currLen=0;
+    private List<byte[]> list;
+    public CustomerDialog mcustomerDialog;
+    private Dialog loadingDialog;
+    private BleNotifyResponse bleNotifyResponse=null;
+
+    private final BleConnectStatusListener mBleConnectStatusListener = new BleConnectStatusListener() {
+        @Override
+        public void onConnectStatusChanged(String mac, int status) {
+            LogUtils.i("TAG","connectStatus:"+status);
+            loadingDialog.dismiss();
+            if(status == Constants.STATUS_DISCONNECTED){
+                mcustomerDialog.show();
+            }else if(status == Constants.STATUS_CONNECTED){
+                mcustomerDialog.dismiss();
+                //打开notify使能
+                if(bleNotifyResponse!=null){
+                    BaseActivity.this.notify(bleNotifyResponse);
+                }
+            }
+        }
+    };
+
+    public void setBleNotifyResponse(BleNotifyResponse bleNotifyResponse){
+        this.bleNotifyResponse = bleNotifyResponse;
+    }
+
+    /**
+     * 注册状态监听变换
+     */
+    public void registerConnectStatusListener(Context context){
+        loadingDialog = LoadingDialog.getDialog(context,context.getString(R.string.bluetooth_reconnected));
+        mcustomerDialog = MyDialog.getDisConnectedDialog(context, new CustomerDialog.OnDialogButtonClickListener() {
+            @Override
+            public void okButtonClick() {
+                loadingDialog.show();
+                mClient.connect(ConfigApp.current_connected_mac, new BleConnectResponse() {
+                    @Override
+                    public void onResponse(int code, BleGattProfile data) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void exitButtonClick() {
+                AtyContainer.getInstance().finishAllActivity();
+            }
+        });
+        mClient.registerConnectStatusListener(ConfigApp.current_connected_mac,mBleConnectStatusListener);
+    }
+
+    /**
+     * 取消注册监听
+     */
+    public void unRegisterConnectStatusListener(){
+        mClient.unregisterConnectStatusListener(ConfigApp.current_connected_mac,mBleConnectStatusListener);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,7 +132,65 @@ public abstract class BaseActivity extends Activity{
         UUID characteruuid = UUID.fromString(ConfigApp.write_characteristic_characteruuid);
         //注意这边写的时候需要进行转换之后才可以
         byte[] resultMsg=CommonUtil.decodeHex(msg.toCharArray());
-        mClient.write(ConfigApp.current_connected_mac,serviceuuid,characteruuid,resultMsg,response);
+        if(resultMsg.length>20){
+            list = splitPacketFor16Byte(resultMsg);
+            msgLen = list.size();
+            writeMore(list.get(currLen),writeResponse);
+            currLen++;
+        }else{
+            mClient.write(ConfigApp.current_connected_mac,serviceuuid,characteruuid,resultMsg,response);
+        }
+    }
+
+    /**
+     * 写数据（超过20字节）
+     * @param msg
+     * @param response
+     */
+    public void writeMore(byte[] msg, BleWriteResponse response){
+        UUID serviceuuid = UUID.fromString(ConfigApp.write_characteristic_serviceuuid);
+        UUID characteruuid = UUID.fromString(ConfigApp.write_characteristic_characteruuid);
+        LogUtils.i("TAG","writeMoreData:"+ Arrays.toString(msg));
+        mClient.write(ConfigApp.current_connected_mac,serviceuuid,characteruuid,msg,response);
+    }
+
+    private BleWriteResponse writeResponse = new BleWriteResponse() {
+        @Override
+        public void onResponse(int code) {
+            LogUtils.i("TAG", "write response code " + code);
+            if(currLen<msgLen){
+                write(list.get(currLen),writeResponse);
+                currLen++;
+            }else{
+                list = new LinkedList<>();
+                msgLen=0;
+                currLen=0;
+            }
+        }
+    };
+
+    /**
+     * 写数据（不超过20字节）
+     * @param msg
+     * @param response
+     */
+    public void write(byte[] msg, BleWriteResponse response){
+        UUID serviceuuid = UUID.fromString(ConfigApp.write_characteristic_serviceuuid);
+        UUID characteruuid = UUID.fromString(ConfigApp.write_characteristic_characteruuid);
+
+        mClient.write(ConfigApp.current_connected_mac,serviceuuid,characteruuid,msg,response);
+    }
+
+    /**
+     * 写数据（速度快，用于固件升级）
+     * @param msg
+     * @param response
+     */
+    public void writeNoRsp(byte[] msg, BleWriteResponse response){
+        UUID serviceuuid = UUID.fromString(ConfigApp.write_characteristic_serviceuuid);
+        UUID characteruuid = UUID.fromString(ConfigApp.write_characteristic_characteruuid);
+
+        mClient.writeNoRsp(ConfigApp.current_connected_mac,serviceuuid,characteruuid,msg,response);
     }
 
     /**
@@ -71,7 +201,9 @@ public abstract class BaseActivity extends Activity{
     public void writeNoRsp(String msg, BleWriteResponse response){
         UUID serviceuuid = UUID.fromString(ConfigApp.write_characteristic_serviceuuid);
         UUID characteruuid = UUID.fromString(ConfigApp.write_characteristic_characteruuid);
-        mClient.writeNoRsp(ConfigApp.current_connected_mac,serviceuuid,characteruuid,msg.getBytes(),response);
+        //注意这边写的时候需要进行转换之后才可以
+        byte[] resultMsg=CommonUtil.decodeHex(msg.toCharArray());
+        mClient.writeNoRsp(ConfigApp.current_connected_mac,serviceuuid,characteruuid,resultMsg,response);
     }
 
     /**
@@ -196,7 +328,7 @@ public abstract class BaseActivity extends Activity{
         String send = trid+changeToLittle(ConfigApp.PROTOCOLID)+len+node;
 
         //crc
-        int i = CRC16Util.calcCrc16(node.getBytes());
+        int i = CRC16Util.calcCrc16(send);
         String crc = completeToTwoByte(Integer.toHexString(i));
 
         //send+crc
@@ -217,5 +349,28 @@ public abstract class BaseActivity extends Activity{
     public int dp2px(float value){
         final float scale = getResources().getDisplayMetrics().density;
         return (int)(value*scale + 0.5f);
+    }
+
+    public List<byte[]> splitPacketFor16Byte(byte[] data) {
+        List<byte[]> dataInfoList = new LinkedList<>();
+        if (data != null) {
+            int index = 0;
+            do {
+                byte[] surplusData = new byte[data.length - index];
+                byte[] currentData;
+                System.arraycopy(data, index, surplusData, 0, data.length - index);
+                if (surplusData.length <= 16) {
+                    currentData = new byte[surplusData.length];
+                    System.arraycopy(surplusData, 0, currentData, 0, surplusData.length);
+                    index += surplusData.length;
+                } else {
+                    currentData = new byte[16];
+                    System.arraycopy(data, index, currentData, 0, 16);
+                    index += 16;
+                }
+                dataInfoList.add(currentData);
+            } while (index < data.length);
+        }
+        return dataInfoList;
     }
 }

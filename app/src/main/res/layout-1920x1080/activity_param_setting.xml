@@ -68,6 +68,7 @@
                         android:textSize="20sp" />
 
                     <EditText
+                        android:id="@+id/edi_noload_speedup"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:ems="4"
@@ -84,6 +85,7 @@
                         android:textSize="20sp" />
 
                     <EditText
+                        android:id="@+id/edi_noload_speeddown"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:ems="4"
@@ -129,6 +131,7 @@
                         android:textSize="20sp" />
 
                     <EditText
+                        android:id="@+id/edi_load_speedup"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:ems="4"
@@ -145,6 +148,7 @@
                         android:textSize="20sp" />
 
                     <EditText
+                        android:id="@+id/edi_load_speeddown"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:ems="4"
@@ -190,6 +194,7 @@
                         android:textSize="20sp" />
 
                     <EditText
+                        android:id="@+id/edi_lift_dispatch"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:ems="4"
@@ -213,6 +218,7 @@
                         android:textSize="20sp" />
 
                     <EditText
+                        android:id="@+id/edi_lift_speed"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:ems="4"
@@ -265,6 +271,7 @@
                         android:textSize="20sp" />
 
                     <EditText
+                        android:id="@+id/edi_speed_down_distance"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="110dp"
@@ -290,14 +297,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"
-                        android:text="@string/activity_param_setting_brake"
+                        android:text="@string/activity_param_setting_speed_down_acc"
                         android:textColor="@color/colorBlack"
                         android:textSize="20sp" />
 
                     <EditText
+                        android:id="@+id/edi_speed_down_acc"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="110dp"
+                        android:layout_marginLeft="90dp"
                         android:ems="4"
                         android:gravity="center"
                         android:hint="@string/edit_default_hint"
@@ -328,6 +336,7 @@
                     android:textSize="25sp" />
 
                 <EditText
+                    android:id="@+id/edi_rotate_speed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
@@ -373,6 +382,7 @@
                         android:textSize="20sp" />
 
                     <EditText
+                        android:id="@+id/edi_wheel_left"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:ems="4"
@@ -389,6 +399,7 @@
                         android:textSize="20sp" />
 
                     <EditText
+                        android:id="@+id/edi_wheel_right"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:ems="4"
@@ -415,11 +426,11 @@
                 android:gravity="center">
 
                 <Button
-                    android:id="@+id/btn_param_setting_next"
+                    android:id="@+id/btn_param_setting_confirm"
                     android:layout_width="290dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/btn_start_shape"
-                    android:text="@string/activity_first_connect_next"
+                    android:background="@drawable/btn_activitystart_selector"
+                    android:text="@string/activity_param_setting_confirm"
                     android:textColor="@color/colorWhite"
                     android:textSize="30sp" />
             </LinearLayout>

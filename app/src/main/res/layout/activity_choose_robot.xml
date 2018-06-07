@@ -134,7 +134,7 @@
                 android:id="@+id/btn_start"
                 android:layout_width="270dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/btn_start_shape"
+                android:background="@drawable/btn_start_shape_up"
                 android:text="@string/activity_choose_robot_queding"
                 android:textColor="@color/colorWhite"
                 android:textSize="30sp" />

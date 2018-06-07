@@ -1,6 +1,7 @@
 package com.sengod.sengod;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.inuker.bluetooth.library.BluetoothClient;
 import com.sengod.sengod.db.DbManager;
@@ -12,10 +13,12 @@ import com.sengod.sengod.db.DbManager;
 public class MyApplication extends Application {
     private static BluetoothClient mBluetoothClient = null;
     private static DbManager dbManager=null;
+    private static Context mcontext;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        mcontext = MyApplication.this;
 
         //初始化BluetoothClient,全局单例使用
         if(mBluetoothClient == null){
@@ -25,5 +28,9 @@ public class MyApplication extends Application {
 
     public static BluetoothClient getBluetoothClient(){
         return mBluetoothClient;
+    }
+
+    public static Context getMContext(){
+        return mcontext;
     }
 }

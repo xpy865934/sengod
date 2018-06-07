@@ -9,11 +9,13 @@ import android.widget.Toast;
 import com.inuker.bluetooth.library.connect.response.BleNotifyResponse;
 import com.inuker.bluetooth.library.connect.response.BleUnnotifyResponse;
 import com.inuker.bluetooth.library.connect.response.BleWriteResponse;
+import com.sengod.sengod.AnalyticalDataUtilsInterface;
 import com.sengod.sengod.ConfigApp;
 import com.sengod.sengod.R;
-import com.sengod.sengod.utils.CommonUtil;
+import com.sengod.sengod.utils.AnalyticalDataUtil;
 import com.sengod.sengod.utils.LogUtils;
 
+import java.util.Arrays;
 import java.util.UUID;
 
 import butterknife.BindView;
@@ -30,6 +32,31 @@ public class NoRectifyingOperationActivity extends BaseActivity {
     EditText ediDistance;
     @BindView(R.id.edi_speed)
     EditText ediSpeed;
+
+    //地址二维码
+    @BindView(R.id.btn_address_qrcode)
+    Button btnAddressQrcode;
+    @BindView(R.id.edi_address_x)
+    EditText ediAddressX;
+    @BindView(R.id.edi_address_y)
+    EditText ediAddressY;
+    @BindView(R.id.edi_address_c_x)
+    EditText ediAddressCX;
+    @BindView(R.id.edi_address_c_y)
+    EditText ediAddressCY;
+    @BindView(R.id.edi_address_angle)
+    EditText ediAddressAngle;
+
+    //货架二维码
+    @BindView(R.id.edi_shelf_id)
+    EditText ediShelfId;
+    @BindView(R.id.edi_shelf_c_x)
+    EditText ediShelfCX;
+    @BindView(R.id.edi_shelf_c_y)
+    EditText ediShelfCY;
+    @BindView(R.id.edi_shelf_angle)
+    EditText ediShelfAngle;
+
     @BindView(R.id.btn_back)
     Button btnBack;
     @BindView(R.id.btn_turn_left)
@@ -44,49 +71,56 @@ public class NoRectifyingOperationActivity extends BaseActivity {
     Button btnUp;
     @BindView(R.id.btn_down)
     Button btnDown;
-    @BindView(R.id.btn_address_qrcode)
-    Button btnAddressQrcode;
+
     @BindView(R.id.btn_shelf_qrcode)
     Button btnShelfQrcode;
 
+    BleNotifyResponse bleNotifyResponse = new BleNotifyResponse() {
+        @Override
+        public void onNotify(UUID service, UUID character, byte[] value) {
+            LogUtils.i("TAG","getData:"+ Arrays.toString(value));
+            AnalyticalDataUtil.analyData(NoRectifyingOperationActivity.this, value, new AnalyticalDataUtilsInterface() {
+                @Override
+                public void success(String[] data) {
+                    if(data.length==5){
+                        //地址二维码数据
+                        ediAddressX.setText(data[0]);
+                        ediAddressY.setText(data[1]);
+                        ediAddressCX.setText(data[2]);
+                        ediAddressCY.setText(data[3]);
+                        ediAddressAngle.setText(data[4]);
+                    }else if(data.length==4){
+                        ediShelfId.setText(data[0]);
+                        ediShelfCX.setText(data[1]);
+                        ediShelfCY.setText(data[2]);
+                        ediShelfAngle.setText(data[3]);
+                    }
+                }
+
+                @Override
+                public void fail(String errorMsg) {
+                    Toast.makeText(NoRectifyingOperationActivity.this,errorMsg,Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+        @Override
+        public void onResponse(int code) {
+
+        }
+    };
 
     @Override
     public void initView() {
-        setContentView(R.layout.activity_no_rectifying_operation1);
+        setContentView(R.layout.activity_no_rectifying_operation);
         ButterKnife.bind(this);
 
-        notify(new BleNotifyResponse() {
-            @Override
-            public void onNotify(UUID service, UUID character, byte[] value) {
-                String temp = new String(CommonUtil.encodeHex(value));
-                String[] result = CommonUtil.decode(temp);
-                for (int i = 0; i < result.length; i++) {
-                    result[i] = Integer.toHexString(Integer.valueOf(result[i]));
-                    LogUtils.i("TAG",result[i] + "");
-                }
-                switch (result[7]){
-                    case "6":
-                        Toast.makeText(getApplicationContext(),"X偏移:"+Integer.parseInt(result[9]+result[8],16)+",Y偏移"+
-                                Integer.parseInt(result[11]+result[10],16)+",旋转角度："+(Integer.parseInt(result[13]+result[12],16)*0.001)+",X坐标："+Integer.parseInt(result[15]+result[14],16)+
-                                ",Y坐标："+Integer.parseInt(result[17]+result[16],16),Toast.LENGTH_SHORT).show();
-                        break;
-                    case "7":
-                        String tempStr = "";
-                        for (int i = 14; i < result.length-2 ; i++) {
-                            tempStr += result[i];
-                        }
-                        Toast.makeText(getApplicationContext(),"X偏移:"+Integer.parseInt(result[9]+result[8],16)+",Y偏移"+
-                                Integer.parseInt(result[11]+result[10],16)+",旋转角度："+(Integer.parseInt(result[13]+result[12],16)*0.001)+",货架ID："+tempStr,Toast.LENGTH_SHORT).show();
-                        break;
-                }
+        setBleNotifyResponse(bleNotifyResponse);
 
-            }
+        //注册监听蓝牙连接状态
+        registerConnectStatusListener(NoRectifyingOperationActivity.this);
 
-            @Override
-            public void onResponse(int code) {
-
-            }
-        });
+        notify(bleNotifyResponse);
     }
 
     @OnClick(R.id.img_back)
@@ -174,13 +208,13 @@ public class NoRectifyingOperationActivity extends BaseActivity {
 
     /**
      * 左转90
-     * -1571  两个字节 F9DD
+     * 1571  两个字节 0623
      * @param view
      */
     @OnClick(R.id.btn_turn_left)
     public void btnTurnLeftClick(View view) {
         //旋转角度
-        String mangle = changeToLittle("F9DD");
+        String mangle = changeToLittle("0623");
         String msg = generateMsg("turn", mangle);
 
         //发送数据
@@ -200,7 +234,7 @@ public class NoRectifyingOperationActivity extends BaseActivity {
     @OnClick(R.id.btn_turn_right)
     public void btnTurnRightClick(View view) {
         //旋转角度
-        String mangle = changeToLittle("0623");
+        String mangle = changeToLittle("F9DD");
         String msg = generateMsg("turn", mangle);
 
         //发送数据
@@ -219,7 +253,7 @@ public class NoRectifyingOperationActivity extends BaseActivity {
     @OnClick(R.id.btn_sync_inverse)
     public void btnSyncInverseClick(View view) {
         //旋转角度
-        String mangle = changeToLittle("F9DD");
+        String mangle = changeToLittle("0623");
         String msg = generateMsg("relativeTurn", mangle);
 
         //发送数据
@@ -238,7 +272,7 @@ public class NoRectifyingOperationActivity extends BaseActivity {
     @OnClick(R.id.btn_sync_up)
     public void btnSyncUpClick(View view){
         //旋转角度
-        String mangle = changeToLittle("0623");
+        String mangle = changeToLittle("F9DD");
         String msg = generateMsg("relativeTurn", mangle);
 
         //发送数据
@@ -329,6 +363,10 @@ public class NoRectifyingOperationActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
+        //关闭监听
+        unRegisterConnectStatusListener();
+
         unNotify(new BleUnnotifyResponse() {
             @Override
             public void onResponse(int code) {
