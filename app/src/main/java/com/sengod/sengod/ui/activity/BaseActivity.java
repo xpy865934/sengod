@@ -250,14 +250,14 @@ public abstract class BaseActivity extends Activity{
     }
 
     /**
-     * 将长度转换成2个字节的16进制字符串
+     * 将长度转换成1个字节的16进制字符串
      * @param i
      * @return
      */
     public String lenToHexString(int i){
         String len = Integer.toHexString(i);
-        if(len.length()<4){
-            len = "0000".substring(0,4-len.length())+len;
+        if(len.length()<2){
+            len = "00".substring(0,2-len.length())+len;
         }
         len = changeToLittle(len);
         return len;
@@ -315,17 +315,21 @@ public abstract class BaseActivity extends Activity{
      * @return
      */
     public String generateMsg(String fnCode,String msg){
+
+        //新版本协议去除事务id,协议id,节点号  //长度字节变为1
         //事务id
         String trid = getTrId();
 
         //节点号之后的内容
-        String node = ConfigApp.NODEID+ConfigApp.FUCTIONID.get(fnCode)+msg;
+        //String node = ConfigApp.NODEID+ConfigApp.FUCTIONID.get(fnCode)+msg;
+        String node = ConfigApp.FUCTIONID.get(fnCode)+msg;
 
         //长度
         String len = lenToHexString(node.length()/2);
 
         //发送的内容
-        String send = trid+changeToLittle(ConfigApp.PROTOCOLID)+len+node;
+        //String send = trid+changeToLittle(ConfigApp.PROTOCOLID)+len+node;
+        String send = len+node;
 
         //crc
         int i = CRC16Util.calcCrc16(send);
